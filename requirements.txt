@@ -1,3 +1,8 @@
-altair
-pandas
 streamlit
+pandas
+numpy
+scikit-learn
+xgboost
+joblib
+rdkit-pypi
+networkx
