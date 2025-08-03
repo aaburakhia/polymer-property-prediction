@@ -57,9 +57,13 @@ The project was executed in a systematic, multi-stage process:
 ## 📂 Repository Structure
 
 ├── production_models/ # Saved .joblib model and selector artifacts
+
 ├── app.py # The main Streamlit application script
+
 ├── requirements.txt # Python dependencies for the application
+
 └── Materials_Informatics_QSPR_Modeling.ipynb # The complete training notebook
+
 
 ## 🔧 How to Run Locally
 
