@@ -31,10 +31,15 @@ The objective was to build a robust Quantitative Structure-Property Relationship
 ## 📂 Repository Structure
 
 The repository is organized as follows:
+
 ├── 📄 app.py # The main Streamlit application script
+
 ├── 📄 LICENSE # MIT License file
+
 ├── 📄 Polymer_Property_Prediction_with_XGBoost.ipynb # The complete training notebook
+
 ├── 📂 production_models/ # Saved .joblib model and feature list artifacts
+
 └── 📄 requirements.txt # Python dependencies for the application
 
 ## 🔧 How to Run Locally
