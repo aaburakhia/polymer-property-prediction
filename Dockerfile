@@ -1,21 +1,22 @@
 # Use a standard Python base image. Version 3.11 matches your Kaggle notebook.
 FROM python:3.11
 
-# Set the working directory inside the container
-WORKDIR /app
+# Create a non-root user and set its home directory
+RUN useradd -m -u 1000 user
+USER user
+ENV HOME=/home/user \
+    PATH=/home/user/.local/bin:$PATH
 
-# Copy the requirements file first, to leverage Docker's caching.
-COPY requirements.txt ./
+# Set the working directory inside the user's home
+WORKDIR /home/user/app
 
-# Install all the Python dependencies from your requirements file.
+# Copy requirements and install dependencies
+COPY --chown=user requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of your application files (app.py, models folder, etc.)
-COPY . .
+# Copy the rest of the application files
+COPY --chown=user . .
 
-# Expose the port that Streamlit will run on. Hugging Face expects port 7860.
+# Expose the port and run the app
 EXPOSE 7860
-
-# The command to run when the container starts.
-# This tells the system to start your Streamlit app.
 CMD ["streamlit", "run", "app.py", "--server.port=7860"]
