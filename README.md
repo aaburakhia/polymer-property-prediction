@@ -1,75 +1,47 @@
----
-title: Polymer Property Predictor
-emoji: 🧪
-colorFrom: blue
-colorTo: green
-sdk: docker
-app_file: app.py
-pinned: false
----
-
 # Polymer Property Predictor: A Materials Informatics Project
 
-[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/aaburakhia/polymer-property-prediction)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-%F0%9F%A4%97%20Hugging%20Face-blue?style=for-the-badge)](https://huggingface.co/spaces/aaburakhia/polymer-property-prediction)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-A machine learning application to predict key physical properties of polymers directly from their chemical structure, based on the NeurIPS 2025 Open Polymer Prediction challenge.
+This project is a comprehensive, end-to-end machine learning pipeline designed to predict key physical properties of polymers from their chemical structure. It serves as a portfolio piece for a Senior Engineer transitioning into R&D roles in Materials Informatics.
 
-This project is the capstone piece of a portfolio designed for a Senior Materials & Project Engineer transitioning into R&D roles in Materials Informatics and as a Research Scientist.
+## 🚀 Live Interactive Demo
 
-## 🚀 Live Demo
+A live version of this tool is deployed on Hugging Face Spaces. You can interact with the models directly here:
 
-You are viewing the live, interactive application. Enter a polymer's SMILES string in the sidebar to get started.
+**[https://huggingface.co/spaces/aaburakhia/polymer-property-prediction](https://huggingface.co/spaces/aaburakhia/polymer-property-prediction)**
 
-## 🎯 Project Overview
+## 🎯 The Project: Goal and Findings
 
-The goal of this project is to accelerate materials discovery by building a robust Quantitative Structure-Property Relationship (QSPR) model. The application takes a polymer's structure as a SMILES string and predicts five key physical properties:
+### Goal
+The objective was to build a robust Quantitative Structure-Property Relationship (QSPR) model based on the NeurIPS 2025 Open Polymer Prediction challenge. The model takes a polymer's SMILES string and predicts five key properties: Glass Transition Temperature (Tg), Fractional Free Volume (FFV), Thermal Decomposition Temperature (Tc), Density, and Radius of Gyration (Rg).
 
-*   **Tg:** Glass Transition Temperature
-*   **FFV:** Fractional Free Volume
-*   **Tc:** Thermal Decomposition Temperature
-*   **Density:** Material Density
-*   **Rg:** Radius of Gyration
+### Key Findings & Scientific Insights
+1.  **High Performance on Competition Data:** A robust pipeline involving extensive data integration and feature engineering was developed. Using 5-Fold Cross-Validation, the final XGBoost models achieved a strong **Weighted MAE (wMAE) of 0.2129**.
+2.  **Discovery of Dataset Bias:** While the model performed well on its training distribution, rigorous validation against well-known commodity polymers (e.g., Polycarbonate, PMMA) revealed significant prediction errors.
+3.  **Conclusion:** The model is a **specialist**, highly tuned to the complex, research-grade polymers of the NeurIPS dataset, but it does not generalize well to simpler, out-of-distribution molecules. This discovery of **domain shift** is a critical scientific finding and proves the necessity of dataset diversity for building truly general-purpose predictive tools in materials science.
 
-This tool demonstrates an end-to-end MLOps pipeline, from raw data integration to a deployed, interactive web application.
+## 🛠️ Technical Methodology
 
-## 🛠️ Methodology & Pipeline
-
-The project was executed in a systematic, multi-stage process:
-
-1.  **Data Integration:** The initial dataset was enriched by integrating data from 7 external sources. This involved robust data cleaning, SMILES canonicalization using RDKit, and a prioritized merging strategy to create a comprehensive training set.
-
-2.  **Feature Engineering:** A rich feature set of over 500 molecular descriptors was generated for each polymer using the RDKit library. This included:
-    *   **Physicochemical Descriptors:** (e.g., Molecular Weight, LogP, TPSA)
-    *   **Structural Fingerprints:** (MACCS Keys, Morgan Fingerprints)
-    *   **Graph-Based Features:** (e.g., Graph Diameter, Number of Cycles)
-
-3.  **Model Training & Validation:**
-    *   Five separate `XGBoost` models were trained, one for each target property.
-    *   A robust 5-Fold Cross-Validation strategy was used to ensure the reliability of the performance metrics.
-    *   The models were evaluated using the competition's specific **Weighted Mean Absolute Error (wMAE)**, resulting in a final OOF wMAE score of **0.212979**.
-
-4.  **Deployment:**
-    *   The five trained models and their corresponding feature selectors were saved as production artifacts.
-    *   A user-friendly web application was built using Streamlit.
-    *   The application was containerized using Docker and deployed on Hugging Face Spaces.
+1.  **Data Integration:** The training set was built by integrating 7 external datasets with the primary competition data, resulting in a comprehensive set of over 11,000 unique polymers.
+2.  **Feature Engineering:** Over 500 features were generated for each molecule using RDKit, including physicochemical descriptors, MACCS & Morgan fingerprints, and graph-based topological features.
+3.  **Modeling:** Five separate `XGBoost` models were trained (one per target), using a curated list of features specific to each property.
+4.  **Deployment:** The final models and feature lists were saved as production artifacts and deployed in a user-friendly web application built with Streamlit and served via Docker on Hugging Face Spaces.
 
 ## 📂 Repository Structure
 
-├── production_models/ # Saved .joblib model and selector artifacts
-
-├── app.py # The main Streamlit application script
-
-├── requirements.txt # Python dependencies for the application
-
-└── Materials_Informatics_QSPR_Modeling.ipynb # The complete training notebook
-
+The repository is organized as follows:
+├── 📄 app.py # The main Streamlit application script
+├── 📄 LICENSE # MIT License file
+├── 📄 Polymer_Property_Prediction_with_XGBoost.ipynb # The complete training notebook
+├── 📂 production_models/ # Saved .joblib model and feature list artifacts
+└── 📄 requirements.txt # Python dependencies for the application
 
 ## 🔧 How to Run Locally
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://huggingface.co/spaces/aaburakhia/polymer-property-prediction
+    git clone https://github.com/aaburakhia/polymer-property-prediction.git
     cd polymer-property-prediction
     ```
 
@@ -82,5 +54,3 @@ The project was executed in a systematic, multi-stage process:
     ```bash
     streamlit run app.py
     ```
-
----
