@@ -3,7 +3,7 @@
 [![Live Demo](https://img.shields.io/badge/Live_Demo-%F0%9F%A4%97%20Hugging%20Face-blue?style=for-the-badge)](https://huggingface.co/spaces/aaburakhia/polymer-property-prediction)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-This project is a comprehensive, end-to-end machine learning pipeline designed to predict key physical properties of polymers from their chemical structure. It serves as a portfolio piece for a Senior Engineer transitioning into R&D roles in Materials Informatics.
+This project is a comprehensive, end-to-end machine learning pipeline designed to predict key physical properties of polymers from their chemical structure.
 
 ## 🚀 Live Interactive Demo
 
