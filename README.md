@@ -11,6 +11,9 @@ A live version of this tool is deployed on Hugging Face Spaces. You can interact
 
 **[https://huggingface.co/spaces/aaburakhia/polymer-property-prediction](https://huggingface.co/spaces/aaburakhia/polymer-property-prediction)**
 
+
+![Polymer Property Predictor App Screenshot](assets/app-screenshot.png)
+
 ## 🎯 The Project: Goal and Findings
 
 ### Goal
